@@ -6,7 +6,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-content container--navbar">
         <div className="navbar-brand">
-          <img className="logo" src="./images/meme-logo.png" />
+          {/* <img className="logo" src="./images/meme-logo.png" /> */}
           <div>
             <h1>Meme Generator</h1>
             <p>Scrimba React Course Part 3</p>
