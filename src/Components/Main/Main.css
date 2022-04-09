@@ -22,10 +22,14 @@
   border: 0.1rem solid rgb(147, 147, 147);
   font-weight: 500;
   transition: all 0.13s ease-in;
+  border-radius: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 .input input:focus {
   outline: 1px solid rgb(120, 120, 120);
+  border-radius: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 /*Buttons*/

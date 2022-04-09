@@ -37,8 +37,8 @@ a:active {
   display: flex;
   justify-content: center;
   max-width: 90vw;
-  margin: 3rem auto;
-  min-height: calc(100vh - 8rem - 8rem - 6rem);
+  margin: 4rem auto;
+  min-height: calc(100vh - 8rem - 8rem - 4rem - 4rem);
 }
 
 .container--navbar,
