@@ -31,6 +31,7 @@
 
 /*Buttons*/
 .btn {
+  color: rgb(17, 17, 17);
   cursor: pointer;
   padding: 1.5rem;
   padding-bottom: 2rem;

@@ -34,12 +34,6 @@ a:active {
 }
 
 .container--3rem {
-  display: flex;
-  justify-content: center;
   max-width: 90vw;
-}
-
-.page {
-  max-width: 100vw;
-  overflow: hidden;
+  margin: 0 auto;
 }
