@@ -1,14 +1,13 @@
 .navbar {
-  padding: 1.5rem 0;
+  height: 8rem;
   background-color: #fff;
   box-shadow: 0 1px 7px 0px rgba(0, 0, 0, 0.065);
 }
 
-.container--navbar {
+.navbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0rem 8%;
 }
 
 .navbar-brand {

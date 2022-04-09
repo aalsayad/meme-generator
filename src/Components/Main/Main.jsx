@@ -6,7 +6,7 @@ import { FiDownload } from "react-icons/fi";
 
 function Main() {
   return (
-    <div className="container--3rem">
+    <div className="container--main">
       <div className="generator-wrapper">
         <div className="input">
           <div className="input-header">

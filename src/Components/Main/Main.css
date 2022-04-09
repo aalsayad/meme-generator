@@ -1,14 +1,13 @@
 /*Full Generator Wrapper*/
 .generator-wrapper {
-  margin-top: 3rem;
   width: 100%;
   max-width: 750px;
-  min-height: calc(100vh - 190px);
+  /* min-height: calc(100vh - 158px); */
 }
 
 /*Input Fields*/
 .input {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .input-header {
@@ -66,16 +65,17 @@
 }
 
 .btn--right {
-  width: 40%;
-  min-width: 150px;
+  width: 60%;
   margin-left: 3rem;
+}
+
+.btn--small {
+  width: 50%;
 }
 
 .btn--dark {
   display: block;
-  margin: 0 auto;
-  margin-top: 2rem;
-  width: 50%;
+  margin: 2rem auto 0 auto;
   background-color: rgb(17, 17, 17);
   color: white;
   border: 0;

@@ -4,7 +4,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
   font-family: "Raleway", Arial, Helvetica, sans-serif;
 }
 
@@ -21,7 +20,8 @@ h1 {
   font-size: 2rem;
 }
 
-p {
+p,
+a {
   font-size: 1.2rem;
 }
 
@@ -33,7 +33,18 @@ a:active {
   text-decoration: none;
 }
 
-.container--3rem {
+.container--main {
+  display: flex;
+  justify-content: center;
   max-width: 90vw;
+  margin: 3rem auto;
+  min-height: calc(100vh - 8rem - 8rem - 6rem);
+}
+
+.container--navbar,
+.container--footer {
   margin: 0 auto;
+  height: 100%;
+  width: 90vw;
+  max-width: 1200px;
 }

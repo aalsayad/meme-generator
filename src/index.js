@@ -10,7 +10,7 @@ ReactDOM.render(
     <div className="page">
       <Navbar />
       <Main />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   </React.StrictMode>,
   document.getElementById("root")

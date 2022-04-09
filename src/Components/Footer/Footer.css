@@ -1,5 +1,33 @@
 .footer {
-  background-color: red;
+  color: #fff;
+  background-color: rgb(17, 17, 17);
   width: 100%;
-  height: 2rem;
+  height: 8rem;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-content a {
+  display: block;
+}
+
+.footer-content a::after {
+  content: "";
+  display: block;
+  opacity: 0.7;
+  background-color: rgb(255, 255, 255);
+  width: 40%;
+  height: 2px;
+  position: relative;
+  top: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.footer-content a:hover::after {
+  width: 100%;
+  opacity: 0.9;
 }
