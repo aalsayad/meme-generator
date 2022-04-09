@@ -1,0 +1,45 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
+html {
+  color: rgb(17, 17, 17);
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(253, 253, 253);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container--3rem {
+  display: flex;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+.page {
+  max-width: 100vw;
+  overflow: hidden;
+}

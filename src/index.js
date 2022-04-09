@@ -1,11 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import ReactDOM from "react-dom";
+import Navbar from "./Components/Navbar/Navbar";
+import Main from "./Components/Main/Main";
+import Footer from "./Components/Footer/Footer";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="page">
+      <Navbar />
+      <Main />
+      <Footer />
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );
