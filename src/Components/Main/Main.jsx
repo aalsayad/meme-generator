@@ -6,12 +6,28 @@ import { FiDownload } from "react-icons/fi";
 import memesData from "../../Data/memesData";
 
 function Main() {
-  const [memeURL, setMemeURL] = useState("./images/leonardo-meme.jpg");
+  //!Use State Initialization
+  const [meme, setMeme] = useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "./images/leonardo-meme.jpg",
+  });
 
-  function randomizeMeme() {
-    setMemeURL(memesData.data.memes[Math.floor(Math.random() * memesData.data.memes.length)].url);
+  //!Randomization of Meme objects & Meme Images
+  function randomMemeImg() {
+    return memesData.data.memes[Math.floor(Math.random() * memesData.data.memes.length)].url;
   }
 
+  function randomizeMeme() {
+    setMeme((prevMeme) => {
+      return {
+        ...prevMeme,
+        randomImage: randomMemeImg(),
+      };
+    });
+  }
+
+  //!Rendering
   return (
     <div className="container--main">
       <div className="generator-wrapper">
@@ -45,7 +61,7 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <img className="meme__image" src={memeURL}></img>
+        <img className="meme__image" src={meme.randomImage}></img>
 
         <button className="btn btn--dark btn--small">
           Download
