@@ -77,7 +77,7 @@ function Main() {
 
   //!Rendering
   return (
-    <div className="container--main">
+    <div id="meme-screenshot" className="container--main">
       <div className="generator-wrapper">
         <div className="input">
           <div className="input-header">
@@ -125,7 +125,7 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <div id="meme-screenshot" className="meme-image-div">
+        <div className="meme-image-div">
           <img className="meme__image" src={meme.randomImage}></img>
           <h4 draggable="false" className="meme__top-caption">
             {meme.topText}
