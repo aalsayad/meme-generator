@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { FiRepeat } from "react-icons/fi";
 import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
 
 function Main() {
   //!Get Memes from API
   const [memesData, setMemesData] = React.useState({});
   React.useEffect(function () {
-    console.log("Effect ran");
     fetch("https://api.imgflip.com/get_memes")
       .then((res) => res.json())
       .then((data) => setMemesData(data))
@@ -17,6 +18,7 @@ function Main() {
 
   //!Use State Initialization
   const [meme, setMeme] = useState({
+    id: 1,
     topText: "",
     bottomText: "",
     randomImage: "./images/leonardo-meme.jpg",
@@ -24,7 +26,7 @@ function Main() {
 
   //!Changing State to handle input caption changes
   function handleCaptions(event) {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
     setMeme((prevMeme) => {
       return {
         ...prevMeme,
@@ -34,16 +36,24 @@ function Main() {
   }
 
   //!Randomization of Meme objects & Meme Images
-  function randomMemeImg() {
-    return memesData.data.memes[Math.floor(Math.random() * memesData.data.memes.length)].url;
+  function randomMemeNumber() {
+    return Math.floor(Math.random() * memesData.data.memes.length);
   }
 
   function randomizeMeme() {
     setMeme((prevMeme) => {
       return {
         ...prevMeme,
-        randomImage: randomMemeImg(),
+        id: memesData.data.memes[randomMemeNumber()].id,
+        randomImage: memesData.data.memes[randomMemeNumber()].url,
       };
+    });
+  }
+
+  //!HTML2Image + downloadjs
+  function htmlToImg() {
+    htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
+      download(dataUrl, `sayad-design-${meme.id}.png`);
     });
   }
 
@@ -87,13 +97,13 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <div className="meme-image-div">
+        <div id="meme-png" className="meme-image-div">
           <img className="meme__image" src={meme.randomImage}></img>
           <h4 className="meme__top-caption">{meme.topText}</h4>
           <h4 className="meme__bot-caption">{meme.bottomText}</h4>
         </div>
 
-        <button className="btn btn--dark btn--small">
+        <button className="btn btn--dark btn--small" onClick={htmlToImg}>
           Download
           <span className="btn__icon">
             <FiDownload size="16px" />
