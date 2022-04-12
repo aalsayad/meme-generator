@@ -122,8 +122,12 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <div id="meme-png" className="meme-image-div">
-          <img className="meme__image" src={meme.randomImage}></img>
+        <div
+          id="meme-png"
+          className="meme-image-div"
+          style={{ background: "red", backgroundImage: `url(${meme.randomImage})`, width: "100%", height: "100%" }}
+        >
+          {/* <img className="meme__image" src={meme.randomImage}></img> */}
           <h4 className="meme__top-caption">{meme.topText}</h4>
           <h4 className="meme__bot-caption">{meme.bottomText}</h4>
         </div>
