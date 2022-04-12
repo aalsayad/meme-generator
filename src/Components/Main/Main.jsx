@@ -5,6 +5,7 @@ import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
+import html2canvas from "html2canvas";
 
 function Main() {
   //!Get Memes from API
@@ -55,18 +56,9 @@ function Main() {
     // htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
     //   download(dataUrl, `sayad-design-${meme.id}.png`);
     // });
-    let node = document.getElementById("meme-png");
-
-    htmlToImage
-      .toPng(node)
-      .then(function (dataUrl) {
-        let img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error("oops, something went wrong!", error);
-      });
+    html2canvas(document.querySelector("#meme-png")).then((canvas) => {
+      document.body.appendChild(canvas);
+    });
   }
 
   //!Coming Soon Alert on Click
