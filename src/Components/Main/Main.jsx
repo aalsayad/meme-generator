@@ -139,7 +139,7 @@ function Main() {
           </span>
         </button>
 
-        <div id="html-to-img"></div>
+        <div id="html-to-img" style={{ backgroundImage: "./images/leonardo-meme.jpg" }}></div>
       </div>
     </div>
   );
