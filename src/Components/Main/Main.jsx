@@ -4,8 +4,7 @@ import { FiRepeat } from "react-icons/fi";
 import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
 import * as htmlToImage from "html-to-image";
-import { saveAs } from "file-saver";
-// import download from "downloadjs";
+import download from "downloadjs";
 
 function Main() {
   //!Get Memes from API
@@ -52,10 +51,22 @@ function Main() {
   }
 
   //!HTML2Image + downloadjs
-  function screenshot() {
-    htmlToImage.toBlob(document.getElementById("meme-img")).then(function (blob) {
-      window.saveAs(blob, "my-node.png");
-    });
+  function htmlToImg() {
+    // htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
+    //   download(dataUrl, `sayad-design-${meme.id}.png`);
+    // });
+    let node = document.getElementById("meme-png");
+
+    htmlToImage
+      .toPng(node)
+      .then(function (dataUrl) {
+        let img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+      });
   }
 
   //!Coming Soon Alert on Click
@@ -123,20 +134,20 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <div className="meme-image-div">
-          <img id="meme-img" className="meme__image" src={meme.randomImage}></img>
-          <h4 draggable="false" className="meme__top-caption">
-            {meme.topText}
-          </h4>
+        <div id="meme-png" className="meme-image-div">
+          <img className="meme__image" src={meme.randomImage}></img>
+          <h4 className="meme__top-caption">{meme.topText}</h4>
           <h4 className="meme__bot-caption">{meme.bottomText}</h4>
         </div>
 
-        <button className="btn btn--dark btn--small" onClick={screenshot}>
+        <button className="btn btn--dark btn--small" onClick={htmlToImg}>
           Download
           <span className="btn__icon">
             <FiDownload size="16px" />
           </span>
         </button>
+
+        <div id="html-to-img"></div>
       </div>
     </div>
   );
