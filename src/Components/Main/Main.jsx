@@ -3,9 +3,18 @@ import React, { useState } from "react";
 import { FiRepeat } from "react-icons/fi";
 import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
-import memesData from "../../Data/memesData";
 
 function Main() {
+  //!Get Memes from API
+  const [memesData, setMemesData] = React.useState({});
+  React.useEffect(function () {
+    console.log("Effect ran");
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setMemesData(data))
+      .catch((error) => alert("There was an error fetching images from api.imgflip"));
+  }, []);
+
   //!Use State Initialization
   const [meme, setMeme] = useState({
     topText: "",
@@ -80,8 +89,8 @@ function Main() {
 
         <div className="meme-image-div">
           <img className="meme__image" src={meme.randomImage}></img>
-          <h3 className="meme__top-caption">{meme.topText}</h3>
-          <h3 className="meme__bot-caption">{meme.bottomText}</h3>
+          <h4 className="meme__top-caption">{meme.topText}</h4>
+          <h4 className="meme__bot-caption">{meme.bottomText}</h4>
         </div>
 
         <button className="btn btn--dark btn--small">
