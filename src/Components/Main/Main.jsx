@@ -5,7 +5,6 @@ import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
-import html2canvas from "html2canvas";
 
 function Main() {
   //!Get Memes from API
@@ -53,11 +52,8 @@ function Main() {
 
   //!HTML2Image + downloadjs
   function htmlToImg() {
-    // htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
-    //   download(dataUrl, `sayad-design-${meme.id}.png`);
-    // });
-    html2canvas(document.querySelector("#meme-png")).then((canvas) => {
-      document.body.appendChild(canvas);
+    htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
+      download(dataUrl, `sayad-design-${meme.id}.png`);
     });
   }
 
@@ -138,8 +134,6 @@ function Main() {
             <FiDownload size="16px" />
           </span>
         </button>
-
-        <div id="html-to-img" style={{ backgroundImage: "./images/leonardo-meme.jpg" }}></div>
       </div>
     </div>
   );
