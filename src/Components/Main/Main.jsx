@@ -4,7 +4,8 @@ import { FiRepeat } from "react-icons/fi";
 import { FiUpload } from "react-icons/fi";
 import { FiDownload } from "react-icons/fi";
 import * as htmlToImage from "html-to-image";
-import download from "downloadjs";
+import { saveAs } from "file-saver";
+// import download from "downloadjs";
 
 function Main() {
   //!Get Memes from API
@@ -52,11 +53,8 @@ function Main() {
 
   //!HTML2Image + downloadjs
   function screenshot() {
-    htmlToImage.toJpeg(document.getElementById("meme-screenshot"), { quality: 0.95 }).then(function (dataUrl) {
-      let link = document.createElement("a");
-      link.download = `sayad-design-${meme.id}.jpeg`;
-      link.href = dataUrl;
-      link.click();
+    htmlToImage.toBlob(document.getElementById("meme-img")).then(function (blob) {
+      window.saveAs(blob, "my-node.png");
     });
   }
 
@@ -77,77 +75,68 @@ function Main() {
 
   //!Rendering
   return (
-    <div id="meme-screenshot">
-      <img src="./images/leonardo-meme.jpg"></img>
-      <div className="container--main">
-        <div className="generator-wrapper">
-          <div className="input">
-            <div className="input-header">
-              <h2>Insert Caption</h2>
-            </div>
-            <input
-              type="text"
-              placeholder="Top Caption"
-              onChange={handleCaptions}
-              name="topText"
-              value={meme.topText}
-            />
-            <input
-              type="text"
-              placeholder="Bottom Caption"
-              onChange={handleCaptions}
-              name="bottomText"
-              value={meme.bottomText}
-            />
+    <div className="container--main">
+      <div className="generator-wrapper">
+        <div className="input">
+          <div className="input-header">
+            <h2>Insert Caption</h2>
           </div>
-
-          <div>
-            <div className="input-header">
-              <h2>Choose Image</h2>
-            </div>
-            <div className="btns-wrapper">
-              <button className="btn" onClick={randomizeMeme}>
-                Randomize
-                <span className="btn__icon">
-                  <FiRepeat size="16px" />
-                </span>
-              </button>
-              <button
-                onClick={comingSoonAlert}
-                onMouseEnter={popup}
-                onMouseLeave={popup}
-                className={uploadButtonClicked ? "btn btn--right btn--relative nudge" : "btn btn--right btn--relative"}
-              >
-                Upload
-                <span className="btn__icon">
-                  <FiUpload size="17px" />
-                </span>
-                {uploadButtonHovered && (
-                  <div className="pop-up">
-                    <p>Feature coming soon</p>
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div className="line__divider"></div>
-
-          <div className="meme-image-div">
-            <img className="meme__image" src={meme.randomImage}></img>
-            <h4 draggable="false" className="meme__top-caption">
-              {meme.topText}
-            </h4>
-            <h4 className="meme__bot-caption">{meme.bottomText}</h4>
-          </div>
-
-          <button className="btn btn--dark btn--small" onClick={screenshot}>
-            Download
-            <span className="btn__icon">
-              <FiDownload size="16px" />
-            </span>
-          </button>
+          <input type="text" placeholder="Top Caption" onChange={handleCaptions} name="topText" value={meme.topText} />
+          <input
+            type="text"
+            placeholder="Bottom Caption"
+            onChange={handleCaptions}
+            name="bottomText"
+            value={meme.bottomText}
+          />
         </div>
+
+        <div>
+          <div className="input-header">
+            <h2>Choose Image</h2>
+          </div>
+          <div className="btns-wrapper">
+            <button className="btn" onClick={randomizeMeme}>
+              Randomize
+              <span className="btn__icon">
+                <FiRepeat size="16px" />
+              </span>
+            </button>
+            <button
+              onClick={comingSoonAlert}
+              onMouseEnter={popup}
+              onMouseLeave={popup}
+              className={uploadButtonClicked ? "btn btn--right btn--relative nudge" : "btn btn--right btn--relative"}
+            >
+              Upload
+              <span className="btn__icon">
+                <FiUpload size="17px" />
+              </span>
+              {uploadButtonHovered && (
+                <div className="pop-up">
+                  <p>Feature coming soon</p>
+                </div>
+              )}
+            </button>
+          </div>
+        </div>
+
+        <div className="line__divider"></div>
+
+        <div className="meme-image-div">
+          <img id="meme-img" className="meme__image" src={meme.randomImage}></img>
+          <h4 draggable="false" className="meme__top-caption">
+            {meme.topText}
+          </h4>
+          <h4 className="meme__bot-caption">{meme.bottomText}</h4>
+        </div>
+
+        <button className="btn btn--dark btn--small" onClick={screenshot}>
+          Download
+          <span className="btn__icon">
+            <FiDownload size="16px" />
+          </span>
+        </button>
       </div>
     </div>
   );
