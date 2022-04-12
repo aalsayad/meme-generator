@@ -65,7 +65,7 @@
 
 .btns-wrapper {
   display: flex;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
 }
 
 .btn--right {
@@ -105,6 +105,37 @@
 }
 
 /*Image*/
+.meme-image-div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
 .meme__image {
   width: 100%;
+  z-index: -1;
+}
+
+.meme__top-caption,
+.meme__bot-caption {
+  text-transform: uppercase;
+  font-family: "Oswald", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  color: white;
+  text-align: center;
+  width: 90%;
+  line-height: 1.1;
+  position: absolute;
+  text-shadow: 1px 1px 0 rgb(17, 17, 17), -1px -1px 0 rgb(17, 17, 17), 1px -1px 0 rgb(17, 17, 17),
+    -1px 1px 0 rgb(17, 17, 17), 0 1px 0 rgb(17, 17, 17), 1px 0 0 rgb(17, 17, 17), 0 -1px 0 rgb(17, 17, 17),
+    -1px 0 0 rgb(17, 17, 17), 1px 1px 5px rgb(17, 17, 17);
+}
+
+.meme__top-caption {
+  top: 1.2rem;
+}
+
+.meme__bot-caption {
+  bottom: 1.2rem;
 }

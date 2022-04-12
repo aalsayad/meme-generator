@@ -13,6 +13,17 @@ function Main() {
     randomImage: "./images/leonardo-meme.jpg",
   });
 
+  //!Changing State to handle input caption changes
+  function handleCaptions(event) {
+    const { name, value, type } = event.target;
+    setMeme((prevMeme) => {
+      return {
+        ...prevMeme,
+        [name]: value,
+      };
+    });
+  }
+
   //!Randomization of Meme objects & Meme Images
   function randomMemeImg() {
     return memesData.data.memes[Math.floor(Math.random() * memesData.data.memes.length)].url;
@@ -35,8 +46,14 @@ function Main() {
           <div className="input-header">
             <h2>Insert Caption</h2>
           </div>
-          <input type="text" placeholder="Top Caption"></input>
-          <input type="text" placeholder="Bottom Caption"></input>
+          <input type="text" placeholder="Top Caption" onChange={handleCaptions} name="topText" value={meme.topText} />
+          <input
+            type="text"
+            placeholder="Bottom Caption"
+            onChange={handleCaptions}
+            name="bottomText"
+            value={meme.bottomText}
+          />
         </div>
 
         <div>
@@ -61,7 +78,11 @@ function Main() {
 
         <div className="line__divider"></div>
 
-        <img className="meme__image" src={meme.randomImage}></img>
+        <div className="meme-image-div">
+          <img className="meme__image" src={meme.randomImage}></img>
+          <h3 className="meme__top-caption">{meme.topText}</h3>
+          <h3 className="meme__bot-caption">{meme.bottomText}</h3>
+        </div>
 
         <button className="btn btn--dark btn--small">
           Download
