@@ -51,10 +51,28 @@ function Main() {
   }
 
   //!HTML2Image + downloadjs
-  function htmlToImg() {
-    htmlToImage.toPng(document.getElementById("meme-png")).then(function (dataUrl) {
-      download(dataUrl, `sayad-design-${meme.id}.png`);
+  function screenshot() {
+    htmlToImage.toJpeg(document.getElementById("meme-screenshot"), { quality: 0.95 }).then(function (dataUrl) {
+      var link = document.createElement("a");
+      link.download = `sayad-design-${meme.id}.jpeg`;
+      link.href = dataUrl;
+      link.click();
     });
+  }
+
+  //!Coming Soon Alert on Click
+  const [uploadButtonClicked, setUploadButtonClicked] = useState(false);
+  function comingSoonAlert() {
+    setUploadButtonClicked((prevValue) => !prevValue);
+    setTimeout(() => {
+      setUploadButtonClicked((prevValue) => !prevValue);
+    }, 450);
+  }
+
+  //!Popup on Hover
+  const [uploadButtonHovered, setUploadButtonHovered] = useState(false);
+  function popup() {
+    setUploadButtonHovered((prevValue) => !prevValue);
   }
 
   //!Rendering
@@ -86,24 +104,36 @@ function Main() {
                 <FiRepeat size="16px" />
               </span>
             </button>
-            <button className="btn btn--right">
+            <button
+              onClick={comingSoonAlert}
+              onMouseEnter={popup}
+              onMouseLeave={popup}
+              className={uploadButtonClicked ? "btn btn--right btn--relative nudge" : "btn btn--right btn--relative"}
+            >
               Upload
               <span className="btn__icon">
                 <FiUpload size="17px" />
               </span>
+              {uploadButtonHovered && (
+                <div className="pop-up">
+                  <p>Feature coming soon</p>
+                </div>
+              )}
             </button>
           </div>
         </div>
 
         <div className="line__divider"></div>
 
-        <div id="meme-png" className="meme-image-div">
+        <div id="meme-screenshot" className="meme-image-div">
           <img className="meme__image" src={meme.randomImage}></img>
-          <h4 className="meme__top-caption">{meme.topText}</h4>
+          <h4 draggable="false" className="meme__top-caption">
+            {meme.topText}
+          </h4>
           <h4 className="meme__bot-caption">{meme.bottomText}</h4>
         </div>
 
-        <button className="btn btn--dark btn--small" onClick={htmlToImg}>
+        <button className="btn btn--dark btn--small" onClick={screenshot}>
           Download
           <span className="btn__icon">
             <FiDownload size="16px" />
